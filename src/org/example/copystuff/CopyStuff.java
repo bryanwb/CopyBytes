@@ -1,16 +1,7 @@
 package org.example.copystuff;
 
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-
-import org.apache.commons.cli.CommandLine;
-import org.apache.commons.cli.CommandLineParser;
-import org.apache.commons.cli.Options;
-import org.apache.commons.cli.ParseException;
-import org.apache.commons.cli.PosixParser;
+import java.io.*;
+import org.apache.commons.cli.*;
 
 public class CopyStuff {
 	
@@ -23,18 +14,20 @@ public class CopyStuff {
         readNWrite(cmd); 
         
     }
-    public static void readNWrite(CommandLine cmd){
+    public static void readNWrite(CommandLine cmd) throws IOException{
+    	InputStreamReader in = null;
+    	OutputStreamWriter out = null;
     	
 		try {
 			if (cmd.hasOption("i")) {
-				FileReader in = (new FileReader(cmd.getOptionValue("i")));
+				in = (InputStreamReader)new FileReader(cmd.getOptionValue("i"));
 			} else {
-				InputStream in = System.in;
+				in = new InputStreamReader(System.in);
 			}
 			if (cmd.hasOption("o")){
-				FileWriter out = new FileWriter(cmd.getOptionValue("o"));
+				out = (OutputStreamWriter)new FileWriter(cmd.getOptionValue("o"));
 			} else {
-				OutputStream out = System.out;
+				out = new OutputStreamWriter(System.out);
 			}
 			
 			int c;
