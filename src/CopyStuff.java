@@ -13,7 +13,7 @@ public class CopyStuff {
     public static void main(String[] args) throws IOException, ParseException {
     	InputStream in = null;	
         OutputStream out = null;
-       
+        //foobar comment
     	Options options = new Options();
     	options.addOption("i", true, "input file");
     	options.addOption("o", true, "output file");
